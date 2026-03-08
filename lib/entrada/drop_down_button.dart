@@ -21,8 +21,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _nomeUsuario = "";
+  String _dropdownValue = 'Opção 1';
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +31,20 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
-              TextField(
-                // 3. Vincule o controlador ao TextField
-                controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
-                ),
-                // 4. Atualize a variável sempre que o texto mudar
-                onChanged: (valor) {
-                  setState(() {
-                    _nomeUsuario = valor;
-                  });
+              const Text("DropdownButton:"),
+              DropdownButton<String>(
+                value: _dropdownValue,
+                onChanged: (String? newValue) {
+                  setState(() => _dropdownValue = newValue!);
                 },
+                items: <String>['Opção 1', 'Opção 2', 'Opção 3']
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    })
+                    .toList(),
               ),
             ],
           ),

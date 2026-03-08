@@ -21,9 +21,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _nomeUsuario = "";
+  bool _isCheckboxChecked = false;
 
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,18 +32,11 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
-              TextField(
-                // 3. Vincule o controlador ao TextField
-                controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
-                ),
-                // 4. Atualize a variável sempre que o texto mudar
-                onChanged: (valor) {
-                  setState(() {
-                    _nomeUsuario = valor;
-                  });
+              const Text("CheckBox:"),
+              Checkbox(
+                value: _isCheckboxChecked,
+                onChanged: (bool? value) {
+                  setState(() => _isCheckboxChecked = value!);
                 },
               ),
             ],

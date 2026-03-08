@@ -21,9 +21,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _nomeUsuario = "";
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,19 +29,13 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
-              TextField(
-                // 3. Vincule o controlador ao TextField
-                controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
-                ),
-                // 4. Atualize a variável sempre que o texto mudar
-                onChanged: (valor) {
-                  setState(() {
-                    _nomeUsuario = valor;
-                  });
-                },
+              const Text("OverflowBar:"),
+              OverflowBar(
+                alignment: MainAxisAlignment.start,
+                children: [
+                  TextButton(onPressed: () {}, child: const Text('Cancelar')),
+                  ElevatedButton(onPressed: () {}, child: const Text('Salvar')),
+                ],
               ),
             ],
           ),

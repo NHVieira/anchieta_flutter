@@ -21,8 +21,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _nomeUsuario = "";
+  double _sliderValue = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +31,14 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
-              TextField(
-                // 3. Vincule o controlador ao TextField
-                controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
-                ),
-                // 4. Atualize a variável sempre que o texto mudar
-                onChanged: (valor) {
-                  setState(() {
-                    _nomeUsuario = valor;
-                  });
-                },
+              Text("Slider (Valor: ${_sliderValue.round()}):"),
+              Slider(
+                value: _sliderValue,
+                min: 0,
+                max: 100,
+                divisions: 100,
+                label: _sliderValue.round().toString(),
+                onChanged: (double val) => setState(() => _sliderValue = val),
               ),
             ],
           ),

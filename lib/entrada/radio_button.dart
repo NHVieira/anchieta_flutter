@@ -21,8 +21,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final TextEditingController _controller = TextEditingController();
-  String _nomeUsuario = "";
+  String? _selectedRadio = 'A';
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +31,22 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: [
-              TextField(
-                // 3. Vincule o controlador ao TextField
-                controller: _controller,
-                decoration: const InputDecoration(
-                  labelText: 'Digite seu nome',
-                  border: OutlineInputBorder(),
-                ),
-                // 4. Atualize a variável sempre que o texto mudar
-                onChanged: (valor) {
-                  setState(() {
-                    _nomeUsuario = valor;
-                  });
-                },
+              const Text("RadioButton:"),
+              Row(
+                children: [
+                  Radio<String>(
+                    value: 'A',
+                    groupValue: _selectedRadio,
+                    onChanged: (val) => setState(() => _selectedRadio = val),
+                  ),
+                  const Text("Opção A"),
+                  Radio<String>(
+                    value: 'B',
+                    groupValue: _selectedRadio,
+                    onChanged: (val) => setState(() => _selectedRadio = val),
+                  ),
+                  const Text("Opção B"),
+                ],
               ),
             ],
           ),
